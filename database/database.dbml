@@ -1,0 +1,27 @@
+project CivilRegistration {
+  database_type: 'Oracle'
+}
+
+Table person {
+  id int(11) [pk, increment, unique, note: 'Identificador único de la persona']
+  dni varchar(8) [not null, default: '00000000', note: 'Número de Documento de Identidad']
+  fullname varchar(255) [not null, default: 'unknown', note: 'Nombre completo']
+  email varchar(50) [not null, default: 'unknown@unknown', note: 'Correo Electrónico']
+  birthdate varchar(10) [not null, default: '00/00/0000', note: 'Fecha de nacimiento']
+  age varchar(2) [not null, default: '00', note: 'Edad']
+  gender varchar(10) [not null, default: 'unsigned', note: 'Masculino, Femenino']
+
+  indexes {
+    id [pk]
+    id [unique]
+  }
+  
+}
+
+Table contact {
+  id int(11) [pk, increment, unique, note: 'Identificador único del contacto']
+  address varchar(255) [not null, default: 'unknown', note: 'Detalle del domicilio']
+  homephone varchar(10) [not null, default: '000 000', note: 'Número de teléfono fijo']
+  phone varchar(15) [not null, default: '00 000 000 000', note: 'Número de teléfono móvil']
+  personId int(11) [not null, ref: > person.id]
+}
