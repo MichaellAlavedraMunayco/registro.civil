@@ -57,6 +57,16 @@ export class PersonCreatorComponent implements OnInit {
 
   }
 
+  resetPersonForm(): void {
+
+    this.personForm.reset();
+
+    Object.keys(this.personForm.controls).forEach(key => {
+      this.personForm.controls[key].setErrors(null);
+    });
+
+  }
+
   getDNIErrorMessage() {
 
     if (this.personForm.get('dni').hasError('required')) {
@@ -97,7 +107,7 @@ export class PersonCreatorComponent implements OnInit {
 
         this.person = new Person();
 
-        this.personForm.reset();
+        this.resetPersonForm();
 
         this.snackBar.open(`${person.fullname} ha sido agregado/a a la base de datos`, 'OK', { duration: 5000 });
 

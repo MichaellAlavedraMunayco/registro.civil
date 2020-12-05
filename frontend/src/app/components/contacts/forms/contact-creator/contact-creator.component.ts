@@ -62,6 +62,16 @@ export class ContactCreatorComponent implements OnInit {
 
   }
 
+  resetContactForm(): void {
+
+    this.contactForm.reset();
+
+    Object.keys(this.contactForm.controls).forEach(key => {
+      this.contactForm.controls[key].setErrors(null);
+    });
+
+  }
+
   async onSaveContact() {
 
     this.validateContactForm();
@@ -76,7 +86,7 @@ export class ContactCreatorComponent implements OnInit {
 
         this.contact = new Contact();
 
-        this.contactForm.reset();
+        this.resetContactForm();
 
         this.snackBar.open(`Se guardó en la base de datos`, 'OK', { duration: 5000 });
 
