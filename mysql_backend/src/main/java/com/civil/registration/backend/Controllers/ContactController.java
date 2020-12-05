@@ -4,69 +4,55 @@ import java.util.List;
 
 import com.civil.registration.backend.Models.Contact;
 import com.civil.registration.backend.Services.ContactService;
-import com.google.gson.Gson;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@CrossOrigin(origins = "*")
+@RestController
+@RequestMapping("/contact")
 public class ContactController {
 
+  @Autowired
   private ContactService contactService;
 
-  @Autowired
-  public void setContactService(ContactService contactService) {
-    this.contactService = contactService;
-  }
+  @RequestMapping(value = "/get/all/by/person/{personId}", method = RequestMethod.GET)
+  public List<Contact> getContactListByPerson(@PathVariable(name = "personId") Long personId) {
 
-  @GetMapping("/contact/get/all/by/person/{personId}")
-  public ResponseEntity<String> getContactList(@PathVariable(name = "personId") Long personId) {
-
-    List<Contact> contactList = contactService.readAllByPerson(personId);
-
-    return ResponseEntity.ok(new Gson().toJson(contactList));
+    return this.contactService.readAllByPerson(personId);
 
   }
 
-  @GetMapping("/contact/get/one/{id}")
-  public ResponseEntity<String> getContact(@PathVariable(name = "id") Long id) {
+  @RequestMapping(value = "/get/one/{id}", method = RequestMethod.GET)
+  public Contact getContact(@PathVariable(name = "id") Long id) {
 
-    Contact contact = contactService.readOne(id);
-
-    return ResponseEntity.ok(new Gson().toJson(contact));
+    return this.contactService.readOne(id);
 
   }
 
-  @PostMapping("/contact/add")
-  public ResponseEntity<String> addContact(@Validated @RequestBody Contact contact) {
+  @RequestMapping(value = "/add", method = RequestMethod.POST)
+  public Contact addContact(@RequestBody Contact contact) {
 
-    Contact savedContact = contactService.createOrUpdate(contact);
-
-    return ResponseEntity.ok(new Gson().toJson(savedContact));
+    return this.contactService.createOrUpdate(contact);
 
   }
 
-  @PostMapping("/contact/update")
-  public ResponseEntity<String> updateContact(@Validated @RequestBody Contact contact) {
+  @RequestMapping(value = "/update", method = RequestMethod.PUT)
+  public Contact updateContact(@RequestBody Contact contact) {
 
-    Contact savedContact = contactService.createOrUpdate(contact);
-
-    return ResponseEntity.ok(new Gson().toJson(savedContact));
+    return this.contactService.createOrUpdate(contact);
 
   }
 
-  @PostMapping("/contact/delete")
-  public ResponseEntity<String> delete(@Validated @RequestBody Contact contact) {
+  @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+  public void delete(@PathVariable(name = "id") Long id) {
 
-    contactService.delete(contact);
-
-    return ResponseEntity.ok(new Gson().toJson(1));
+    this.contactService.deleteById(id);
 
   }
 

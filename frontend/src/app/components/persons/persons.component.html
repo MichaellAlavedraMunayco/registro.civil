@@ -1,0 +1,23 @@
+<mat-grid-list gutterSize="20" cols="12" rows="1" rowHeight="700px">
+
+  <mat-grid-tile colspan="4" rowspan="1">
+
+    <mat-tab-group [selectedIndex]="formIndex">
+
+      <mat-tab label="Nuevo">
+        <app-person-creator></app-person-creator>
+      </mat-tab>
+
+      <mat-tab label="Editar">
+        <app-person-updater></app-person-updater>
+      </mat-tab>
+
+    </mat-tab-group>
+
+  </mat-grid-tile>
+
+  <mat-grid-tile colspan="8" rowspan="1">
+    <app-person-table></app-person-table>
+  </mat-grid-tile>
+
+</mat-grid-list>

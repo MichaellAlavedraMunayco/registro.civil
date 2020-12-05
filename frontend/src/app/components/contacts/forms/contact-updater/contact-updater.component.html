@@ -1,0 +1,37 @@
+<div class="example-container" *ngIf="contact">
+
+  <form nz-form [formGroup]="contactForm" (ngSubmit)="onUpdateContact()">
+
+    <mat-form-field appearance="outline">
+      <mat-label>Domicilio</mat-label>
+      <input matInput placeholder="Domicilio" type="text" maxlength="255" formControlName="address" required
+        [(ngModel)]="contact.address">
+      <mat-error *ngIf="contactForm.get('address').invalid">Ingrese un domicilio</mat-error>
+    </mat-form-field>
+
+    <br>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Teléfono fijo</mat-label>
+      <input matInput placeholder="000000" type="number" maxlength="10" formControlName="homephone" required
+        [(ngModel)]="contact.homephone">
+      <mat-error *ngIf="contactForm.get('homephone').invalid">Ingrese un número telefónico fijo</mat-error>
+    </mat-form-field>
+
+    <br>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Teléfono móvil</mat-label>
+      <input matInput placeholder="000000000" type="number" maxlength="10" formControlName="phone" required
+        [(ngModel)]="contact.phone">
+      <mat-error *ngIf="contactForm.get('phone').invalid">Ingrese un número telefónico móvil</mat-error>
+    </mat-form-field>
+
+    <br>
+    <br>
+
+    <button mat-raised-button color="primary">Guardar</button>
+
+  </form>
+
+</div>

@@ -1,21 +1,90 @@
-CREATE TABLE `person` (
-  `id` int(11) PRIMARY KEY AUTO_INCREMENT COMMENT 'Identificador único de la persona',
-  `dni` varchar(8) NOT NULL DEFAULT "00000000" COMMENT 'Número de Documento de Identidad',
-  `fullname` varchar(255) NOT NULL DEFAULT "unknown" COMMENT 'Nombre completo',
-  `email` varchar(50) NOT NULL DEFAULT "unknown@unknown" COMMENT 'Correo Electrónico',
-  `birthdate` varchar(10) NOT NULL DEFAULT "00/00/0000" COMMENT 'Fecha de nacimiento',
-  `age` varchar(2) NOT NULL DEFAULT "00" COMMENT 'Edad',
-  `gender` varchar(10) NOT NULL DEFAULT "unsigned" COMMENT 'Masculino, Femenino'
-)
+-- phpMyAdmin SQL Dump
+-- version 4.9.0.1
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 05-12-2020 a las 03:16:19
+-- Versión del servidor: 10.4.6-MariaDB
+-- Versión de PHP: 7.1.32
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de datos: `civil.registration`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `contact`
+--
 
 CREATE TABLE `contact` (
-  `id` int(11) PRIMARY KEY AUTO_INCREMENT COMMENT 'Identificador único del contacto',
-  `address` varchar(255) NOT NULL DEFAULT "unknown" COMMENT 'Detalle del domicilio',
-  `homephone` varchar(10) NOT NULL DEFAULT "000 000" COMMENT 'Número de teléfono fijo',
-  `phone` varchar(15) NOT NULL DEFAULT "00 000 000 000" COMMENT 'Número de teléfono móvil',
-  `personId` int(11) NOT NULL
-)
+  `id` bigint(20) NOT NULL,
+  `address` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `homephone` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `phone` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `personId` bigint(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-ALTER TABLE `contact` ADD FOREIGN KEY (`personId`) REFERENCES `person` (`id`);
+-- --------------------------------------------------------
 
-CREATE UNIQUE INDEX `person_index_0` ON `person` (`id`);
+--
+-- Estructura de tabla para la tabla `person`
+--
+
+CREATE TABLE `person` (
+  `id` bigint(20) NOT NULL,
+  `age` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `birthdate` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `dni` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `fullname` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `gender` varchar(255) COLLATE utf8_bin DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `contact`
+--
+ALTER TABLE `contact`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `person`
+--
+ALTER TABLE `person`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `contact`
+--
+ALTER TABLE `contact`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `person`
+--
+ALTER TABLE `person`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

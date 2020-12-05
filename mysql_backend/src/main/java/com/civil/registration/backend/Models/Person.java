@@ -13,53 +13,122 @@ public class Person {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
+
   private String dni;
+
   private String fullname;
+
   private String email;
+
   private String birthdate;
+
   private String age;
+
   private String gender;
+
+  public Person() {
+  }
+
+  public Person(Long id, String dni, String fullname, String email, String birthdate, String age, String gender) {
+
+    this.id = id;
+    this.dni = dni;
+    this.fullname = fullname;
+    this.email = email;
+    this.birthdate = birthdate;
+    this.age = age;
+    this.gender = gender;
+
+  }
 
   public Long getId() {
 
-    return this.id;
+    return id;
+
+  }
+
+  public void setId(Long id) {
+
+    this.id = id;
 
   }
 
   public String getDni() {
 
-    return this.dni;
+    return dni;
+
+  }
+
+  public void setDni(String dni) {
+
+    this.dni = dni;
 
   }
 
   public String getFullname() {
 
-    return this.fullname;
+    return fullname;
+
+  }
+
+  public void setFullname(String fullname) {
+
+    this.fullname = fullname;
 
   }
 
   public String getEmail() {
 
-    return this.email;
+    return email;
+
+  }
+
+  public void setEmail(String email) {
+
+    this.email = email;
 
   }
 
   public String getBirthdate() {
 
-    return this.birthdate;
+    return birthdate;
+
+  }
+
+  public void setBirthdate(String birthdate) {
+
+    this.birthdate = birthdate;
 
   }
 
   public String getAge() {
 
-    return this.age;
+    return age;
+
+  }
+
+  public void setAge(String age) {
+
+    this.age = age;
 
   }
 
   public String getGender() {
 
-    return this.gender;
+    return gender;
 
+  }
+
+  public void setGender(String gender) {
+
+    this.gender = gender;
+
+  }
+
+  @Override
+  public String toString() {
+    return "Person: Id='" + id + "', DNI='" + dni + "', Fullname='" + fullname + "', Email='" + email + "', Birthdate='"
+        + birthdate + "', Age='" + age + "', Gender='" + gender + "'";
   }
 
   // utils

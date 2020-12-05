@@ -34,9 +34,7 @@ public class PersonService {
 
     if (Person.validateDNI(person.getDni()) && Person.validateEmail(person.getEmail())) {
 
-      Person newPerson = personRepository.save(person);
-
-      return newPerson;
+      return personRepository.save(person);
 
     } else {
 
@@ -46,9 +44,9 @@ public class PersonService {
 
   }
 
-  public void delete(Person person) {
+  public void deleteById(Long personId) {
 
-    personRepository.delete(person);
+    personRepository.deleteById(personId);
 
   }
 

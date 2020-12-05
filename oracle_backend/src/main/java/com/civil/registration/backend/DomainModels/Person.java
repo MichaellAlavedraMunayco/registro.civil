@@ -72,7 +72,7 @@ public class Person {
 
   public static Boolean validateDNI(String dni) {
 
-    return dni.matches("[0-9]{9}");
+    return dni.matches("[0-9]{8}");
 
   }
 

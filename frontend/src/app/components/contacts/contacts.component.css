@@ -1,0 +1,8 @@
+.mat-typography {
+  width: 1000px;
+}
+
+mat-tab-group, mat-tab {
+  align-self: flex-start;
+  padding-top: 50px;
+}

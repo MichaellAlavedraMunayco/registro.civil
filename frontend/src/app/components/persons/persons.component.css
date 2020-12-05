@@ -1,0 +1,4 @@
+mat-tab-group, mat-tab {
+  align-self: flex-start;
+  padding-top: 50px;
+}

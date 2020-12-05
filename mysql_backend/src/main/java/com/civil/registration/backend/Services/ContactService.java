@@ -34,15 +34,13 @@ public class ContactService {
 
   public Contact createOrUpdate(Contact contact) {
 
-    Contact newContact = contactRepository.save(contact);
-
-    return newContact;
+    return contactRepository.save(contact);
 
   }
 
-  public void delete(Contact contact) {
+  public void deleteById(Long contactId) {
 
-    contactRepository.delete(contact);
+    contactRepository.deleteById(contactId);
 
   }
 

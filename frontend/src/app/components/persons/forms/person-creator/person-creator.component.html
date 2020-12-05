@@ -1,0 +1,65 @@
+<div class="example-container">
+
+  <form nz-form [formGroup]="personForm" (ngSubmit)="onSavePerson()">
+
+    <mat-form-field appearance="outline">
+      <mat-label>DNI</mat-label>
+      <input matInput placeholder="00000000" type="number" maxlength="8" pattern="[0-9]{8}" formControlName="dni"
+        required [(ngModel)]="person.dni">
+      <mat-error *ngIf="personForm.get('dni').invalid">{{ getDNIErrorMessage() }}</mat-error>
+    </mat-form-field>
+
+    <br>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Nombre completo</mat-label>
+      <input matInput placeholder="Nombre completo" type="text" maxlength="255" formControlName="fullname" required
+        [(ngModel)]="person.fullname">
+      <mat-error *ngIf="personForm.get('fullname').invalid">Ingrese su nombre completo</mat-error>
+    </mat-form-field>
+
+    <br>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="usuario@dominio.com" type="text" maxlength="255" formControlName="email" required
+        [(ngModel)]="person.email">
+      <mat-error *ngIf="personForm.get('email').invalid">{{ getEmailErrorMessage() }}</mat-error>
+    </mat-form-field>
+
+    <br>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Fecha de nacimiento</mat-label>
+      <input matInput placeholder="Fecha de nacimiento" [matDatepicker]="picker" formControlName="birthdate" required
+        [(ngModel)]="person.birthdate" (click)="picker.open()">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="personForm.get('birthdate').invalid">Ingrese su fecha de nacimientos</mat-error>
+    </mat-form-field>
+
+    <br>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Edad</mat-label>
+      <input matInput placeholder="00" type="number" maxlength="2" formControlName="age" required
+        [(ngModel)]="person.age">
+      <mat-error *ngIf="personForm.get('age').invalid">Ingrese su edad</mat-error>
+    </mat-form-field>
+
+    <br>
+
+    <mat-radio-group aria-label="Género" formControlName="gender" required [(ngModel)]="person.gender">
+      <mat-radio-button value="Masculino">Masculino</mat-radio-button>
+      <mat-radio-button value="Femenino">Femenino</mat-radio-button>
+      <mat-error *ngIf="personForm.get('gender').invalid">Seleccione su género</mat-error>
+    </mat-radio-group>
+
+    <br>
+    <br>
+
+    <button mat-raised-button color="primary">Guardar</button>
+
+  </form>
+
+</div>

@@ -1,0 +1,33 @@
+<h2 mat-dialog-title>Información de Contacto</h2>
+
+<mat-dialog-content class="mat-typography">
+
+  <mat-grid-list gutterSize="10" cols="12" rows="1" rowHeight="600px">
+
+    <mat-grid-tile colspan="4" rowspan="1">
+
+      <mat-tab-group [selectedIndex]="formIndex">
+
+        <mat-tab label="Nuevo">
+          <app-contact-creator></app-contact-creator>
+        </mat-tab>
+
+        <mat-tab label="Editar">
+          <app-contact-updater></app-contact-updater>
+        </mat-tab>
+
+      </mat-tab-group>
+
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="8" rowspan="1">
+      <app-contact-table></app-contact-table>
+    </mat-grid-tile>
+
+  </mat-grid-list>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cerrar</button>
+</mat-dialog-actions>
